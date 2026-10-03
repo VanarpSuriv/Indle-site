@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://vanarpsuriv.github.io/Indle-site/sitemap.xml

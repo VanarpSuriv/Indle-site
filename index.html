@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f3eb">
+  <title>Indle — Daily Word Puzzle</title>
+  <meta name="description" content="Six languages. One daily word. Meet Indle, an offline-first Android word puzzle for Tamil, Telugu, Kannada, Hindi, Malayalam and English. Coming soon.">
+  <link rel="canonical" href="https://vanarpsuriv.github.io/Indle-site/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Indle — Daily Word Puzzle">
+  <meta property="og:description" content="A little wordplay. A little discovery. Six languages, one daily ritual. Coming soon to Google Play.">
+  <meta property="og:url" content="https://vanarpsuriv.github.io/Indle-site/">
+  <meta property="og:image" content="https://vanarpsuriv.github.io/Indle-site/assets/social-card.png">
+  <meta property="og:image:alt" content="Indle. Six languages. One daily word.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Indle — Daily Word Puzzle">
+  <meta name="twitter:description" content="Six languages. One daily word. Coming soon to Google Play.">
+  <meta name="twitter:image" content="https://vanarpsuriv.github.io/Indle-site/assets/social-card.png">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="site.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="header wrap">
+    <a class="wordmark" href="./" aria-label="Indle home">indle<span class="brand-dot">.</span></a>
+    <details class="navigation" open>
+      <summary>Menu <span aria-hidden="true">+</span></summary>
+      <nav aria-label="Main navigation">
+        <a href="#languages">Languages</a><a href="#how-it-works">The game</a><a href="#about">About</a><a href="#support">Support</a>
+      </nav>
+    </details>
+    <a class="nav-cta" href="#android">Android, soon <span aria-hidden="true">↗</span></a>
+  </header>
+  <main id="main">
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="status-dot"></span> A DAILY DOSE OF DISCOVERY</p>
+        <h1 id="hero-title">Six languages.<br>One daily <em>word.</em></h1>
+        <p class="hero-description">A beautifully designed daily word puzzle for Tamil, Telugu, Kannada, Hindi, Malayalam and English.</p>
+        <div class="hero-actions"><a class="button dark" href="#android">Coming soon to Google Play <span aria-hidden="true">↗</span></a><a class="text-link" href="#languages">Explore Indle <span aria-hidden="true">↓</span></a></div>
+        <p class="fine">Made for Android. Built for a little everyday joy.</p>
+      </div>
+      <div class="hero-art">
+        <div class="art-ring" aria-hidden="true"></div>
+        <div class="script-sticker tamil" lang="ta">தமிழ்</div>
+        <div class="script-sticker hindi" lang="hi">हिन्दी</div>
+        <figure class="phone-preview">
+          <div class="phone-label"><span class="status-dot"></span> INDLE / APP PREVIEW</div>
+          <img src="assets/app-board.png" width="1080" height="2400" alt="Actual Indle development build in dark mode, showing an empty Tamil puzzle board and native Tamil keyboard." fetchpriority="high">
+          <figcaption>Actual development build · design may evolve</figcaption>
+        </figure>
+      </div>
+    </section>
+    <div class="script-ribbon" aria-label="The six Indle languages"><div class="wrap ribbon-inner"><span lang="ta">தமிழ்</span><span aria-hidden="true">✳</span><span lang="te">తెలుగు</span><span aria-hidden="true">✳</span><span lang="kn">ಕನ್ನಡ</span><span aria-hidden="true">✳</span><span lang="hi">हिन्दी</span><span aria-hidden="true">✳</span><span lang="ml">മലയാളം</span><span aria-hidden="true">✳</span><span>English</span></div></div>
+
+    <section class="section wrap" id="languages" aria-labelledby="languages-title">
+      <div class="section-heading"><p class="eyebrow">01 / MANY WAYS TO WORDPLAY</p><div class="heading-row"><h2 id="languages-title">Every script.<br><em>Its own personality.</em></h2><p>Six writing systems. Thoughtful input for each. Familiar letters, a fresh little challenge.</p></div></div>
+      <div class="language-grid" aria-label="Select a language to explore its writing system">
+        <button class="language-card lang-ta" data-language="Tamil" data-script="தமிழ்" data-lang="ta" data-description="Tamil input groups letters into readable orthographic units, with vowel and consonant controls." aria-pressed="true"><span class="native" lang="ta">தமிழ்</span><span class="language-name">Tamil <span aria-hidden="true">↗</span></span></button>
+        <button class="language-card lang-te" data-language="Telugu" data-script="తెలుగు" data-lang="te" data-description="Telugu has its own script rules and custom input, keeping each writing system distinct." aria-pressed="false"><span class="native" lang="te">తెలుగు</span><span class="language-name">Telugu <span aria-hidden="true">↗</span></span></button>
+        <button class="language-card lang-kn" data-language="Kannada" data-script="ಕನ್ನಡ" data-lang="kn" data-description="Kannada uses a dedicated script engine and language-specific keyboard." aria-pressed="false"><span class="native" lang="kn">ಕನ್ನಡ</span><span class="language-name">Kannada <span aria-hidden="true">↗</span></span></button>
+        <button class="language-card lang-hi" data-language="Hindi" data-script="हिन्दी" data-lang="hi" data-description="Hindi input follows Devanagari writing rules rather than counting raw code units as letters." aria-pressed="false"><span class="native" lang="hi">हिन्दी</span><span class="language-name">Hindi <span aria-hidden="true">↗</span></span></button>
+        <button class="language-card lang-ml" data-language="Malayalam" data-script="മലയാളം" data-lang="ml" data-description="Malayalam has independent script rules and native input designed around its writing system." aria-pressed="false"><span class="native" lang="ml">മലയാളം</span><span class="language-name">Malayalam <span aria-hidden="true">↗</span></span></button>
+        <button class="language-card lang-en" data-language="English" data-script="English" data-lang="en" data-description="English uses familiar QWERTY input and the same six-guess puzzle rhythm." aria-pressed="false"><span class="native">English</span><span class="language-name">English <span aria-hidden="true">↗</span></span></button>
+      </div>
+      <div class="language-detail"><span id="selected-script" lang="ta">தமிழ்</span><div aria-live="polite" aria-atomic="true"><strong id="selected-language">Beautiful input, in Tamil.</strong><p id="language-description">Tamil input groups letters into readable orthographic units, with vowel and consonant controls.</p></div><span class="detail-tag">BEAUTIFUL INPUT</span></div>
+      <p class="fine launch-note">Prelaunch preview. All six language engines exist; language content and final release checks are still in progress.</p>
+    </section>
+
+    <section class="play-section" id="how-it-works" aria-labelledby="how-title"><div class="wrap play-layout">
+      <div><p class="eyebrow">02 / SMALL PUZZLE. LOVELY PAYOFF.</p><h2 id="how-title">A few guesses.<br>A little <em>“aha!”</em></h2><p class="section-intro">Find the word in six guesses. Every result brings you one step closer.</p><ol class="steps"><li><span>01</span><div><h3>Make your guess</h3><p>Use the native keyboard. Tap a tile to select and replace a letter unit.</p></div></li><li><span>02</span><div><h3>Follow the feedback</h3><p>Correct place, different place, or absent. Optional symbols help beyond color.</p></div></li><li><span>03</span><div><h3>Enjoy the discovery</h3><p>Finish the puzzle, see your result, and share it without spoiling the answer.</p></div></li></ol></div>
+      <div class="interaction-card"><div class="card-top"><span>THE FEEL OF INDLE</span><span aria-hidden="true">✳</span></div><div class="demo-tiles" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div><div class="demo-progress" aria-hidden="true"><span></span><span></span><span></span><span></span></div><div class="confetti" aria-hidden="true"></div><p class="demo-state" id="demo-state" aria-live="polite">A little input. A little discovery.</p><button class="button demo-button" id="replay">Play the interaction <span aria-hidden="true">↻</span></button><p class="fine">Abstract interaction study. No real puzzle or answer.</p></div>
+    </div></section>
+
+    <section class="section wrap" aria-labelledby="modes-title"><p class="eyebrow">03 / A RITUAL, AT YOUR PACE</p><h2 id="modes-title">A reason to return.<br><em>Room to explore.</em></h2><div class="mode-grid">
+      <article class="mode-card daily" id="daily"><div class="mode-illustration calendar" aria-hidden="true"><span>DAILY</span><strong>01</strong><div>● ○ ○ ○ ○ ○</div></div><p class="eyebrow">DAILY PUZZLE</p><h3>One fresh moment.</h3><p>A date-based puzzle for a small daily ritual. The game uses India Standard Time and saves your progress on your device.</p></article>
+      <article class="mode-card journey" id="journey"><div class="mode-illustration journey-path" aria-hidden="true"><i>✓</i><span></span><i>✓</i><span></span><i>3</i><span></span><i>4</i></div><p class="eyebrow">JOURNEY MODE</p><h3>Follow your curiosity.</h3><p>Separate levels, unlocked in sequence. Journey progress stays independent of the Daily, so exploring never reveals a Daily answer.</p></article>
+    </div><p class="fine launch-note">Daily and Journey content are undergoing language and rights review before launch.</p></section>
+
+    <section class="section wrap feature-section" aria-labelledby="features-title"><div class="section-heading"><p class="eyebrow">04 / THOUGHTFUL LITTLE DETAILS</p><h2 id="features-title">More play.<br><em>Less friction.</em></h2></div><div class="feature-grid">
+      <article class="feature"><div class="feature-symbol" aria-hidden="true">↗</div><h3>Clues, when you need them.</h3><p>Progressive built-in clues help you move forward. Revealing a clue does not use a guess or change your streak.</p><span class="feature-label">CLUES</span></article>
+      <article class="feature"><div class="feature-symbol" aria-hidden="true">◉</div><h3>Your progress belongs with you.</h3><p>Local stats, guess distributions, achievements and streaks record your play. Spoiler-safe sharing uses Android’s share sheet.</p><span class="feature-label">STATS &amp; STREAKS</span></article>
+      <article class="feature"><div class="feature-symbol" aria-hidden="true">Aa</div><h3>Comfort comes first.</h3><p>Dark mode, reduced motion, sound and haptic controls, and symbol-based feedback. Screen-reader semantics and larger text remain part of release testing.</p><span class="feature-label">ACCESSIBILITY</span></article>
+    </div></section>
+
+    <section class="offline-section" id="offline" aria-labelledby="offline-title"><div class="wrap offline-layout"><div class="offline-art" aria-hidden="true"><div class="sun">✳</div><div class="offline-note"><span>NO SIGNAL?</span><strong>Still game.</strong><span>WORDS GO WHERE YOU GO.</span></div></div><div><p class="eyebrow">05 / OFFLINE FIRST</p><h2 id="offline-title">Take a little<br><em>wordplay anywhere.</em></h2><p class="section-intro">Bundled puzzles, input, built-in clues and local progress live on your phone. Core play is designed to work without an internet connection or an account.</p><div class="offline-facts"><span>No forced sign-in</span><span>No AI required</span><span>Local progress</span></div><p class="fine">Optional cloud features need a connection. Release content review is still in progress.</p></div></div></section>
+
+    <section class="section wrap" id="ai" aria-labelledby="ai-title"><div class="ai-layout"><div><p class="eyebrow">06 / A LITTLE EXTRA HELP</p><h2 id="ai-title">The puzzle comes first.<br><em>AI is optional.</em></h2><p class="section-intro">Indle includes optional AI hint and word-explanation features, disabled by default. They require a connection, a configured service and sign-in.</p><p class="fine">AI can make mistakes. Availability and language quality require final verification before launch.</p></div><div class="ai-card"><div class="ai-chip"><span aria-hidden="true">✳</span> OPTIONAL AI</div><h3>Help you ask for.</h3><ul><li><strong>AI hints</strong><span>Extra assistance during a puzzle.</span></li><li><strong>Word explanations</strong><span>Explore meaning after a result.</span></li><li id="voice"><strong>Voice &amp; pronunciation <span class="small-badge">IN DEVELOPMENT</span></strong><span>Pronunciation playback and voice mode are not verified launch features.</span></li></ul><a class="text-link" href="privacy.html#app-ai">What gets sent when you use AI <span aria-hidden="true">↗</span></a></div></div></section>
+
+    <section class="section wrap screenshots" id="screenshots" aria-labelledby="screens-title"><div class="heading-row"><div><p class="eyebrow">07 / INSIDE INDLE</p><h2 id="screens-title">Made for the<br><em>way you write.</em></h2></div><p>Native input, an uncluttered board, and a place to think. Here’s an actual look at the current development build.</p></div><div class="screenshot-layout"><figure><a href="assets/app-board.png" aria-label="Open full-size screenshot of the Tamil board"><img src="assets/app-board.png" width="1080" height="2400" alt="Empty Tamil board with six rows, selected tile outline, and Tamil vowel keyboard in Indle’s dark mode." loading="lazy" decoding="async"></a><figcaption>Tamil board · actual development screenshot</figcaption></figure><div class="screenshot-notes"><span class="big-script" lang="ta">தமிழ்</span><h3>Letters deserve<br>room to breathe.</h3><p>Indle handles writing systems with language-specific rules. Its input works with readable letter units instead of treating every code unit as a separate tile.</p><a class="text-link" href="#languages">Explore all six scripts <span aria-hidden="true">↗</span></a><p class="fine">The screenshot is a development preview, not a production release. Visual design may evolve.</p></div></div></section>
+
+    <section class="section wrap about" id="about" aria-labelledby="about-title"><p class="eyebrow">08 / ABOUT INDLE</p><h2 id="about-title">A small game.<br><em>A lot of love for language.</em></h2><p class="about-copy">Indle brings a familiar word-puzzle rhythm to Indian writing systems and English. A thoughtful keyboard. A satisfying discovery. A gentle reason to come back tomorrow.</p><div class="about-bottom"><span>Developed by <a href="https://github.com/VanarpSuriv">VanarpSuriv</a></span><span class="prelaunch">PRELAUNCH · ANDROID</span></div></section>
+
+    <section class="support-section wrap" id="support" aria-labelledby="support-title"><div><p class="eyebrow">NEED A HAND?</p><h2 id="support-title">Let’s keep it simple.</h2><p>Find data choices and deletion steps below. For technical feedback, use the website’s public issue tracker.</p><p class="fine">Never post personal details, account information, or deletion requests in public issues. A private support and deletion channel is still required before app launch.</p></div><div class="support-links"><a href="privacy.html">Privacy <span aria-hidden="true">↗</span></a><a href="account-deletion.html">Account deletion <span aria-hidden="true">↗</span></a><a href="https://github.com/VanarpSuriv/Indle-site/issues">Technical support <span aria-hidden="true">↗</span></a></div></section>
+
+    <section class="android-section" id="android" aria-labelledby="android-title"><div class="wrap"><p class="eyebrow">YOUR NEXT LITTLE DAILY RITUAL</p><h2 id="android-title">See you at<br><em>the next word.</em><span aria-hidden="true">✳</span></h2><p class="launch-pill">Coming soon to Google Play</p><p>Indle is in development. Final content, privacy and release checks are in progress.</p><a class="text-link" href="#main">Back to the beginning <span aria-hidden="true">↑</span></a></div></section>
+  </main>
+  <footer class="wrap footer"><a class="wordmark" href="./" aria-label="Indle home">indle<span class="brand-dot">.</span></a><p>Six languages. One daily word.</p><nav aria-label="Footer navigation"><a href="privacy.html">Privacy</a><a href="account-deletion.html">Deletion</a><a href="#support">Support</a></nav><span class="fine">© 2026 Indle</span></footer>
+</body>
+</html>
