@@ -1,9 +1,12 @@
 # Public asset provenance
 
-- `app-board.png`: real Indle Android development screenshot, empty Tamil board.
+- `app-board.png`: real polished Indle Android development screenshot, empty
+  Tamil board in dark mode, captured on an Android API 35 device.
   Authorized for public website use by the project owner on 3 October 2026.
   Contains no answer, clue, identity, credential or private data. No screenshot
   pixels were changed. The page uses CSS framing only.
+  Dimensions: 1080 × 2400. Size: 113,119 bytes. SHA-256:
+  `d9b71d1786a1a3ef54c0ace3d9523a3aac4c81bf1476db07fbca9a14a4bb5054`.
 - `favicon.svg`: original typographic Indle website icon, created for this site.
 - `social-card.png`: original editorial website share graphic, created for this
   site. It contains only the brand name, public slogan and abstract shapes.
