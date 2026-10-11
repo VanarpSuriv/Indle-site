@@ -1,7 +1,8 @@
 # Security
 
-This repository contains only the public static Indle website. It has no backend,
-forms, analytics, account processing, runtime dependencies or private app code.
+This repository contains only the public static Indle website. Its account-deletion page loads the pinned Firebase web SDK and accepts an explicit
+Google-authenticated deletion action through the existing Supabase service. It stores
+no credentials or sessions in browser storage. No analytics or private app code is published.
 
 For a non-sensitive website bug, use this repository's issues. Never post account
 information, credentials, personal data, or deletion requests in public issues.

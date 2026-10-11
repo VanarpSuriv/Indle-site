@@ -3,6 +3,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 import re
+import json
 import shutil
 import struct
 import xml.etree.ElementTree as ET
@@ -11,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = (
     "index.html", "privacy.html", "account-deletion.html", "404.html",
     "styles.css", "site.js", "robots.txt", "sitemap.xml",
+    "page.mjs", "delete-flow.mjs", "firebase-public-config.json",
     "assets/app-board.png", "assets/favicon.svg", "assets/social-card.png",
     "assets/fonts/noto_sans_tamil.ttf", "assets/fonts/NotoSansTamil-OFL.txt",
     "assets/fonts/noto_sans_telugu.ttf", "assets/fonts/OFL-te.txt",
@@ -39,7 +41,9 @@ class Page(HTMLParser):
         if tag == "html": assert attrs.get("lang") == "en"
         if tag == "img":
             assert attrs.get("alt") and attrs.get("width") and attrs.get("height"), self.path
-        assert tag not in ("form", "iframe"), f"Unexpected external data surface in {self.path}"
+        assert tag != "iframe", f"Unexpected embedded data surface in {self.path}"
+        if tag == "form":
+            assert self.path == "account-deletion.html" and attrs.get("id") == "deletion-form" and not attrs.get("action"), self.path
         for name in ("href", "src"):
             if attrs.get(name): self.links.append(attrs[name])
 
@@ -58,7 +62,15 @@ def validate():
         path = ROOT / name
         assert not path.is_symlink(), f"Symlink excluded: {name}"
         if path.suffix not in (".png", ".ttf"):
-            assert not credential.search(path.read_text(encoding="utf-8")), f"Credential pattern in {name}"
+            text = path.read_text(encoding="utf-8")
+            if name == "firebase-public-config.json":
+                config = json.loads(text)
+                assert set(config) == {"projectId", "authDomain", "apiKey"}
+                assert config["projectId"] == "indicgame" and config["authDomain"] == "indicgame.firebaseapp.com"
+                assert re.fullmatch(r"AIza[0-9A-Za-z_-]{35}", config["apiKey"])
+                # Firebase web configuration is public; privileged credentials remain prohibited.
+                text = text.replace(config["apiKey"], "PUBLIC_FIREBASE_CLIENT_CONFIGURATION")
+            assert not credential.search(text), f"Credential pattern in {name}"
     pages = {}
     for name in PUBLIC:
         if name.endswith(".html"):
@@ -94,7 +106,11 @@ def validate():
         assert language in index, f"Missing language: {language}"
     assert "prefers-reduced-motion" in (ROOT / "styles.css").read_text()
     assert "Coming soon to Google Play" in index
-    assert "not available yet" in (ROOT / "account-deletion.html").read_text()
+    deletion = (ROOT / "account-deletion.html").read_text()
+    assert 'id="sign-in"' in deletion and 'id="deletion-form" hidden' in deletion and 'id="status" role="status"' in deletion
+    assert 'src="./page.mjs"' in deletion and "Privacy policy" in deletion
+    assert "reauthenticateWithPopup" in (ROOT / "page.mjs").read_text()
+    assert "deleteAccountData" in (ROOT / "page.mjs").read_text()
     return pages
 
 
