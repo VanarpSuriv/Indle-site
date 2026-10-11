@@ -10,7 +10,7 @@ import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = (
-    "index.html", "privacy.html", "account-deletion.html", "404.html",
+    "index.html", "privacy.html", "account-deletion.html", "delete.html", "404.html",
     "styles.css", "site.js", "robots.txt", "sitemap.xml",
     "page.mjs", "delete-flow.mjs", "firebase-public-config.json",
     "assets/app-board.png", "assets/favicon.svg", "assets/social-card.png",
