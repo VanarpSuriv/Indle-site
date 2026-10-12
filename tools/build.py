@@ -3,6 +3,8 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 import re
+import json
+import hashlib
 import shutil
 import struct
 import xml.etree.ElementTree as ET
@@ -11,6 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = (
     "index.html", "privacy.html", "account-deletion.html", "404.html",
     "styles.css", "site.js", "robots.txt", "sitemap.xml",
+    "page.mjs", "delete-flow.mjs", "firebase-public-config.json", "deletion.css",
     "assets/app-board.png", "assets/favicon.svg", "assets/social-card.png",
     "assets/fonts/noto_sans_tamil.ttf", "assets/fonts/NotoSansTamil-OFL.txt",
     "assets/fonts/noto_sans_telugu.ttf", "assets/fonts/OFL-te.txt",
@@ -19,7 +22,7 @@ PUBLIC = (
     "assets/fonts/noto_sans_malayalam.ttf", "assets/fonts/OFL-ml.txt",
 )
 SOURCE = (*PUBLIC, "README.md", "LICENSE", "SECURITY.md", ".gitignore",
-          ".github/workflows/pages.yml", "tools/build.py", "assets/ASSETS.md")
+          ".github/workflows/pages.yml", "tools/build.py", "tools/test_security.py", "assets/ASSETS.md")
 
 
 class Page(HTMLParser):
@@ -39,7 +42,9 @@ class Page(HTMLParser):
         if tag == "html": assert attrs.get("lang") == "en"
         if tag == "img":
             assert attrs.get("alt") and attrs.get("width") and attrs.get("height"), self.path
-        assert tag not in ("form", "iframe"), f"Unexpected external data surface in {self.path}"
+        assert tag != "iframe", f"Unexpected embedded surface in {self.path}"
+        if tag == "form":
+            assert self.path == "account-deletion.html" and attrs.get("id") == "deletion-form" and set(attrs) <= {"id", "hidden"}, f"Unexpected form in {self.path}"
         for name in ("href", "src"):
             if attrs.get(name): self.links.append(attrs[name])
 
@@ -58,7 +63,16 @@ def validate():
         path = ROOT / name
         assert not path.is_symlink(), f"Symlink excluded: {name}"
         if path.suffix not in (".png", ".ttf"):
-            assert not credential.search(path.read_text(encoding="utf-8")), f"Credential pattern in {name}"
+            text = path.read_text(encoding="utf-8")
+            if name == "firebase-public-config.json":
+                # Only this exact reviewed public Firebase client config is exempted, never arbitrary keys.
+                assert hashlib.sha256(path.read_bytes()).hexdigest() == "c5b4626a7fe6666af8c9ec4b9977f69c7c4067c6f4b465675beef2169e2da100"
+                config = json.loads(text)
+                assert set(config) == {"projectId", "authDomain", "apiKey"}
+                assert config["projectId"] == "indicgame" and config["authDomain"] == "indicgame.firebaseapp.com"
+                assert re.fullmatch(r"AIza[0-9A-Za-z_-]{35}", config["apiKey"])
+                text = json.dumps({k: v for k, v in config.items() if k != "apiKey"})
+            assert not credential.search(text), f"Credential pattern in {name}"
     pages = {}
     for name in PUBLIC:
         if name.endswith(".html"):
@@ -82,7 +96,7 @@ def validate():
             if url.fragment:
                 target_name = target.relative_to(ROOT).as_posix()
                 assert target_name in pages and url.fragment in pages[target_name].ids, f"Missing anchor: {link}"
-    for asset in re.findall(r"url\(['\"]?([^)'\"]+)", (ROOT / "styles.css").read_text()):
+    for asset in re.findall(r"url\(['\"]?([^)'\"]+)", (ROOT / "styles.css").read_text(encoding="utf-8")):
         assert (ROOT / asset).is_file(), f"Missing CSS asset: {asset}"
     ET.parse(ROOT / "sitemap.xml")
     ET.parse(ROOT / "assets/favicon.svg")
@@ -92,9 +106,12 @@ def validate():
     index = (ROOT / "index.html").read_text(encoding="utf-8")
     for language in ("தமிழ்", "తెలుగు", "ಕನ್ನಡ", "हिन्दी", "മലയാളം", "English"):
         assert language in index, f"Missing language: {language}"
-    assert "prefers-reduced-motion" in (ROOT / "styles.css").read_text()
+    assert "prefers-reduced-motion" in (ROOT / "styles.css").read_text(encoding="utf-8")
     assert "Coming soon to Google Play" in index
-    assert "not available yet" in (ROOT / "account-deletion.html").read_text()
+    deletion = (ROOT / "account-deletion.html").read_text(encoding="utf-8")
+    assert 'id="deletion-form"' in deletion and 'src="./page.mjs"' in deletion
+    assert 'http-equiv="Content-Security-Policy"' in deletion and 'name="referrer" content="no-referrer"' in deletion
+    assert 'inMemoryPersistence' in (ROOT / 'page.mjs').read_text(encoding="utf-8")
     return pages
 
 
