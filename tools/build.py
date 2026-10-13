@@ -66,7 +66,8 @@ def validate():
             text = path.read_text(encoding="utf-8")
             if name == "firebase-public-config.json":
                 # Only this exact reviewed public Firebase client config is exempted, never arbitrary keys.
-                assert hashlib.sha256(path.read_bytes()).hexdigest() == "c5b4626a7fe6666af8c9ec4b9977f69c7c4067c6f4b465675beef2169e2da100"
+                # Git stores LF; Windows checkouts may use CRLF for this same reviewed public config.
+                assert hashlib.sha256(path.read_bytes().replace(b'\r\n', b'\n')).hexdigest() == "018d0c3f074cb75520bd79e52dd48262a08ebe5f541da45f15c7d6171855f7d3"
                 config = json.loads(text)
                 assert set(config) == {"projectId", "authDomain", "apiKey"}
                 assert config["projectId"] == "indicgame" and config["authDomain"] == "indicgame.firebaseapp.com"
