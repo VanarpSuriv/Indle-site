@@ -32,7 +32,7 @@ class PublicSurfaceTest(unittest.TestCase):
             with patch.object(build, 'ROOT', root):
                 for raw in (canonical, canonical.replace(b'\n', b'\r\n')):
                     config.write_bytes(raw)
-                    self.assertEqual(4, len(build.validate()))
+                    self.assertEqual(5, len(build.validate()))
                 config.write_bytes(canonical.replace(b'indicgame', b'not-the-reviewed-project'))
                 with self.assertRaises(AssertionError):
                     build.validate()
