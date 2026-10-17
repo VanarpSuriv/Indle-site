@@ -2,7 +2,8 @@
 
 The official prelaunch Indle website: six languages, one daily word. Native static
 HTML, CSS and a small JavaScript file keep the site fast without a framework or
-package installation. The site adds no tracking, cookies, forms or backend.
+package installation. The preview adds no analytics or advertising. Account deletion uses Google/Firebase
+reauthentication and the existing owner-scoped Supabase deletion endpoint.
 
 ## Local preview
 
@@ -68,15 +69,17 @@ AI defaults off; voice and pronunciation are not advertised as available. Cloud
 and deletion flows still need release verification. A monitored private support
 and external deletion request channel, verified publisher legal identity and
 retention schedule are missing. The privacy and deletion pages state these limits
-openly; they are not a finalized Play Store privacy policy or working external
-deletion request resource. Public issues accept non-sensitive technical feedback
+openly. The privacy page is not a finalized Play Store policy. The implemented external
+deletion flow requires Firebase authorized-domain configuration and actual live
+Google-linked acceptance; static publishing alone does not prove deletion. Public issues accept non-sensitive technical feedback
 only.
 
 ## Asset licenses
 
 Site code: MIT. App image: owner-authorized Indle development screenshot. Noto
 script fonts: SIL Open Font License, complete notices beside the files. See
-`assets/ASSETS.md`. No remotely loaded fonts or visual libraries are used.
+`assets/ASSETS.md`. No remotely loaded fonts or visual libraries are used. The deletion page imports
+the Firebase web SDK, version 12.4.0, from the official Google gstatic host.
 
 ## Public repository allowlist
 
